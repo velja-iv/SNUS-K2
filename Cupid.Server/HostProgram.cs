@@ -17,6 +17,10 @@ namespace Cupid.Server
             builder.Services.AddServiceModelMetadata();
 
             builder.Services.AddSingleton<CupidService>();
+
+            // Configure the server to listen on net.tcp
+            builder.WebHost.UseNetTcp(9000);
+
             var app = builder.Build();
 
             var appBuilder = (IApplicationBuilder)app;
@@ -30,7 +34,7 @@ namespace Cupid.Server
             svc.Start(); // starts with 60s delay per spec
 
             Console.WriteLine("Cupid server running on net.tcp://localhost:9000/CupidService");
-            app.Run("net.tcp://localhost:9000");
+            app.Run();
         }
     }
 }

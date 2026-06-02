@@ -24,7 +24,7 @@ namespace Cupid.Server
 
         public void Start()
         {
-            _timer = new Timer(RunCycle, null, Timeout.Infinite, 60_000);
+            _timer = new Timer(RunCycle, null, 0, 60_000);
         }
 
         public void StartImmediatelyForTesting() { _timer = new Timer(RunCycle, null, 0, 60_000); }
@@ -125,8 +125,8 @@ namespace Cupid.Server
                     if (sender.HasSentThisCycle)
                         continue;
 
-                    if (sender.HasPendingMessage)
-                        continue;
+                    //if (sender.HasPendingMessage)
+                    //    continue;
 
                     var recipient = FindBestMatch(sender);
 
